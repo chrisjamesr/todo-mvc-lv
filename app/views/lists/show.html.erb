@@ -7,16 +7,13 @@
     <input class="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      <li>
-        <div class="view">
-          <label>Milk</label>
-        </div>
-      </li>
-      <li>
-        <div class="view">
-          <label>Cookies</label>
-        </div>
-      </li>
+      <% @list.items.each do |item| %>
+        <li>
+          <div class="view">
+            <label><%= item.description %></label>
+          </div>
+        </li>
+      <% end %>
     </ul>
   </section>
   <footer class="footer">
