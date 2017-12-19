@@ -1,7 +1,12 @@
 <section class="todoapp">
   <header class="header">
     <h1><%= @list.name %></h1>
-    <input class="new-todo" placeholder="Add an item..." autofocus="">
+  
+      <%= form_for([@list, @item]) do |f| %>
+        <%= f.text_field :description, :class => "new-todo", :placeholder => (@item.errors.full_messages_for(:description).first || "Enter a new item...") %>
+        <%= f.submit :style => "display: none" %>
+      <% end %>
+
   </header>
   <section class="main">
     <input class="toggle-all" type="checkbox">
@@ -11,7 +16,7 @@
         <li>
           <div class="view">
             <label><%= item.description %></label>
-          </div>
+          </div> 
         </li>
       <% end %>
     </ul>
