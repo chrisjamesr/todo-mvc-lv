@@ -1,0 +1,11 @@
+notes What urls do I need and how might my database change?
+
+- the idea of an item being complete or incomplete requires data.
+
+<input class="toggle type="checkbox">
+
+$(function(){
+  $("input.toggle").on("change", function(){
+  $(this).parents("form").trigger("submit")
+  })
+});

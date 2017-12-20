@@ -9,6 +9,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    raise params.inspect
+  end
+
   private
     def item_params
       params.require(:item).permit(:description)
