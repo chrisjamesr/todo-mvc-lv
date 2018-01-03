@@ -22,4 +22,10 @@
   </section>
   <footer class="footer">
   </footer>
+
 </section>
+<footer class="info">
+  <p>Logged in as: <%= current_user.email%> </p>
+  <p><%= link_to "Logout", logout_path %></p>
+
+</footer>
