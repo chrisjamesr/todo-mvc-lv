@@ -10,7 +10,12 @@ class SessionsController < ApplicationController
       user = User.find_or_create_by_omniauth(auth_hash)
       session[:user_id] = user.id
       redirect_to root_path
-    else  
+    elsif user = User.find_by(:email => params[:email])
+      if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect_to root_path
+      end
+    else
       render 'sessions/new'
     end
   end
