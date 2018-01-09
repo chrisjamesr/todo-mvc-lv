@@ -9,6 +9,9 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    if !can_current_user?(:view, @list)
+      redirect_to root_path, :notice => "Can't find that..."
+    end
     @item = Item.new
   end
 
