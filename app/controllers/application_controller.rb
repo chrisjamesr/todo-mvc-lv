@@ -4,12 +4,13 @@
   protect_from_forgery with: :exception
   helper_method :current_user
 
+  private
   def authentication_required
     redirect_to login_path unless logged_in?
   end
 
   def can_current_user?(action, object)
-
+    object.viewable_by?(current_user)
   end
 
   def logged_in?
