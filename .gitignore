@@ -1,0 +1,5 @@
+/.env
+/tmp
+/Gemfile.lock
+*.sqlite3
+/log
