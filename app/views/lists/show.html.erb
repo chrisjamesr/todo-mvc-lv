@@ -10,9 +10,34 @@
     <input class="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
-      <%= render :collection => @list.items, :partial => "items/item_li", :as => :item %>
+      <%= render :collection => @list.items.order(created_at: "desc"), :partial => "items/item_li", :as => :item %>
     </ul>
   </section>
   <footer class="footer">
+
   </footer>
+
+
 </section>
+<script id="item_template" type="text/x-handlebars-template">
+  <li class="item" id="item_{{id}}">
+  <div class="view">
+    <form class="edit_item" id="edit_item_{{id}}" action="/lists/<%=@list.id%>/items/{{id}}" accept-charset="UTF-8" method="post">  
+      <input name="utf8" type="hidden" value="✓">
+      <input type="hidden" name="_method" value="patch">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input name="item[status]" type="hidden" value="0">
+      <input class="toggle" type="checkbox" value="1" name="item[status]" id="item_status">
+    </form>
+
+    <label>{{description}}</label>
+
+    <form class="button_to" method="post" action="/lists/<%=@list.id%>/items/{{id}}">
+      <input type="hidden" name="_method" value="delete">
+      <input class="destroy" type="submit" value="x">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    </form>
+  </div>
+</li>
+</script>
+
