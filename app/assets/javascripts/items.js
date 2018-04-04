@@ -37,18 +37,16 @@ Item.destroy = function(json){
 }
 
 Item.prototype.$li = function(){
-  debugger
   return $("li#item_"+this.id)
 }
 
 Item.prototype.destroy = function(){
-  $("li#item_"+this.id).remove();  
+  this.$li().remove();  
 }
 
 Item.destroyListener = function(){
-  $("input.destroy").on("click",  function(e){
+  $("ul.todo-list").on("click", "input.destroy", function(e){
     e.preventDefault();
-    console.log("is this working?")
     // submit this form via ajax and remoe the item
     let $form = $(this).parent("form");
     let action = $form.attr("action");
